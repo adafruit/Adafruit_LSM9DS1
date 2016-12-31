@@ -41,11 +41,11 @@ Adafruit_LSM9DS1::Adafruit_LSM9DS1( TwoWire* wireBus, int32_t sensorID ) {
     initI2C(wireBus, sensorID);
 }
 
-Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t xmcs, int8_t gcs, int32_t sensorID ) {
+Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t xgcs, int8_t mcs, int32_t sensorID ) {
   _i2c = false;
   // hardware SPI!
-  _csg = gcs;
-  _csxm = xmcs;
+  _csm = mcs;
+  _csxg = xgcs;
   _mosi = _miso = _clk = -1;
   _lsm9dso_sensorid_accel = sensorID + 1;
   _lsm9dso_sensorid_mag = sensorID + 2;
@@ -57,14 +57,14 @@ Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t xmcs, int8_t gcs, int32_t sensorID ) {
   _tempSensor  = Sensor(this, &Adafruit_LSM9DS1::readTemp,  &Adafruit_LSM9DS1::getTempEvent,  &Adafruit_LSM9DS1::getTempSensor);
 }
 
-Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t clk, int8_t miso, int8_t mosi, int8_t xmcs, int8_t gcs, int32_t sensorID ) {
+Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t sclk, int8_t smiso, int8_t smosi, int8_t xgcs, int8_t mcs, int32_t sensorID ) {
   _i2c = false;
   // software SPI!
-  _csg = gcs;
-  _csxm = xmcs;
-  _mosi = mosi;
-  _miso = miso;
-  _clk = clk;
+  _csm = mcs;
+  _csxg = xgcs;
+  _mosi = smosi;
+  _miso = smiso;
+  _clk = sclk;
   _lsm9dso_sensorid_accel = sensorID + 1;
   _lsm9dso_sensorid_mag = sensorID + 2;
   _lsm9dso_sensorid_gyro = sensorID + 3;
@@ -81,31 +81,24 @@ bool Adafruit_LSM9DS1::begin()
     _wire->begin();
   } else if (_clk == -1) {
     // Hardware SPI
-    pinMode(_csxm, OUTPUT);
-    pinMode(_csg, OUTPUT);
-    digitalWrite(_csxm, HIGH);
-    digitalWrite(_csg, HIGH);
+    pinMode(_csxg, OUTPUT);
+    pinMode(_csm, OUTPUT);
+    digitalWrite(_csxg, HIGH);
+    digitalWrite(_csm, HIGH);
     SPI.begin();
   } else {
+    Serial.println("softSPI");
     // Sofware SPI
     pinMode(_clk, OUTPUT);
     pinMode(_mosi, OUTPUT);
-    pinMode(_csxm, OUTPUT);
-    pinMode(_csg, OUTPUT);
-    digitalWrite(_csxm, HIGH);
-    digitalWrite(_csg, HIGH);
+    pinMode(_miso, INPUT);
+    pinMode(_csxg, OUTPUT);
+    pinMode(_csm, OUTPUT);
+    digitalWrite(_csxg, HIGH);
+    digitalWrite(_csm, HIGH);
     digitalWrite(_clk, HIGH);
   }
 
-  uint8_t id = read8(XGTYPE, LSM9DS1_REGISTER_WHO_AM_I_XG);
-  //Serial.print ("XG whoami: 0x"); Serial.println(id, HEX);
-  if (id != LSM9DS1_XG_ID)
-    return false;
-
-  id = read8(MAGTYPE, LSM9DS1_REGISTER_WHO_AM_I_M);
-  //Serial.print ("MAG whoami: 0x"); Serial.println(id, HEX);
-  if (id != LSM9DS1_MAG_ID)
-    return false;
 
   // soft reset & reboot accel/gyro
   write8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG8, 0x05);
@@ -113,6 +106,27 @@ bool Adafruit_LSM9DS1::begin()
   write8(MAGTYPE, LSM9DS1_REGISTER_CTRL_REG2_M, 0x0C);
 
   delay(10);
+
+
+  for (uint8_t i=0; i<0x30; i++) {
+    Serial.print("XG $"); Serial.print(i, HEX); Serial.print(" = 0x"); 
+    Serial.println(read8(XGTYPE, i), HEX);
+  }
+  for (uint8_t i=0; i<0x30; i++) {
+    Serial.print("M $"); Serial.print(i, HEX); Serial.print(" = 0x"); 
+    Serial.println(read8(MAGTYPE, i), HEX);
+  }
+  
+
+  uint8_t id = read8(XGTYPE, LSM9DS1_REGISTER_WHO_AM_I_XG);
+  Serial.print ("XG whoami: 0x"); Serial.println(id, HEX);
+  if (id != LSM9DS1_XG_ID)
+    return false;
+
+  id = read8(MAGTYPE, LSM9DS1_REGISTER_WHO_AM_I_M);
+  Serial.print ("MAG whoami: 0x"); Serial.println(id, HEX);
+  if (id != LSM9DS1_MAG_ID)
+    return false;
 
   // enable gyro continuous
   write8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG1_G, 0xC0); // on XYZ
@@ -128,13 +142,6 @@ bool Adafruit_LSM9DS1::begin()
   //write8(MAGTYPE, LSM9DS1_REGISTER_CTRL_REG4_M, 0x0C); // high perf Z mode
 
 
-  /*
-  for (uint8_t i=0; i<0x30; i++) {
-    Serial.print("$"); Serial.print(i, HEX);
-    Serial.print(" = 0x"); 
-    Serial.println(read8(XMTYPE, i), HEX);
-  }
-  */
 
   // Set default ranges for the various sensors  
   setupAccel(LSM9DS1_ACCELRANGE_2G);
@@ -246,7 +253,7 @@ void Adafruit_LSM9DS1::setupAccel ( lsm9ds1AccelRange_t range )
   uint8_t reg = read8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG6_XL);
   reg &= ~(0b00011000);
   reg |= range;
-  Serial.println("set range: ");
+  //Serial.println("set range: ");
   write8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG6_XL, reg );
   
   switch (range)
@@ -363,10 +370,10 @@ void Adafruit_LSM9DS1::write8(boolean type, byte reg, byte value)
 
   if (type == MAGTYPE) {
     address = LSM9DS1_ADDRESS_MAG;
-    _cs = _csxm;
+    _cs = _csm;
   } else {
     address = LSM9DS1_ADDRESS_ACCELGYRO;
-    _cs = _csg;
+    _cs = _csxg;
   }
   if (_i2c) {
     _wire->beginTransmission(address);
@@ -379,13 +386,15 @@ void Adafruit_LSM9DS1::write8(boolean type, byte reg, byte value)
     Serial.println(value, HEX);
     */
   } else {
-    SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
     digitalWrite(_cs, LOW);
+    if (_clk == -1)     // hardware SPI
+      SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
     // set address
-    spixfer(reg | 0x40); // write multiple
-    spixfer(value); 
+    spixfer(reg & 0x7F); // write data
+    spixfer(value);
+    if (_clk == -1)     // hardware SPI
+      SPI.endTransaction();
     digitalWrite(_cs, HIGH);
-    SPI.endTransaction();
 
   }
 }
@@ -405,10 +414,10 @@ byte Adafruit_LSM9DS1::readBuffer(boolean type, byte reg, byte len, uint8_t *buf
 
   if (type == MAGTYPE) {
     address = LSM9DS1_ADDRESS_MAG;
-    _cs = _csxm;
+    _cs = _csm;
   } else {
     address = LSM9DS1_ADDRESS_ACCELGYRO;
-    _cs = _csg;
+    _cs = _csxg;
   }
 
   if (_i2c) {
@@ -433,16 +442,23 @@ byte Adafruit_LSM9DS1::readBuffer(boolean type, byte reg, byte len, uint8_t *buf
 
     _wire->endTransmission();
   } else {
-    SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
-    digitalWrite(_cs, LOW);
+    if (_clk == -1)     // hardware SPI
+      SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
+    else
+      digitalWrite(_clk, HIGH);
     // set address
-    spixfer(reg | 0x80 | 0x40); // read multiple
+
+    digitalWrite(_cs, LOW);
+
+    spixfer(reg | 0x80 ); // readdata
     for (uint8_t i=0; i<len; i++) {
       buffer[i] = spixfer(0);
     }
+    if (_clk == -1)     // hardware SPI
+      SPI.endTransaction();
+    else
+      digitalWrite(_clk, HIGH);
     digitalWrite(_cs, HIGH);
-    SPI.endTransaction();
-
   }
 
   return len;
@@ -455,13 +471,14 @@ uint8_t Adafruit_LSM9DS1::spixfer(uint8_t data) {
       return SPI.transfer(data);
   } else {
     //Serial.println("Software SPI");
-      uint8_t reply = 0;    for (int i=7; i>=0; i--) {
+    uint8_t reply = 0;    
+    for (int i=7; i>=0; i--) {
       reply <<= 1;
       digitalWrite(_clk, LOW);
       digitalWrite(_mosi, data & (1<<i));
       digitalWrite(_clk, HIGH);
       if (digitalRead(_miso)) 
-          reply |= 1;
+	reply |= 1;
     }
     return reply;
   }

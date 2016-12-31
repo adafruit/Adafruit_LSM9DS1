@@ -249,7 +249,7 @@ class Adafruit_LSM9DS1
   private:
     boolean _i2c;
     TwoWire* _wire;
-    int8_t  _csg, _csxm, _mosi, _miso, _clk;
+    int8_t  _csm, _csxg, _mosi, _miso, _clk;
     float   _accel_mg_lsb;
     float   _mag_mgauss_lsb;
     float   _gyro_dps_digit;
