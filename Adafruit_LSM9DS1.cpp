@@ -87,7 +87,7 @@ bool Adafruit_LSM9DS1::begin()
     digitalWrite(_csm, HIGH);
     SPI.begin();
   } else {
-    Serial.println("softSPI");
+    //Serial.println("softSPI");
     // Sofware SPI
     pinMode(_clk, OUTPUT);
     pinMode(_mosi, OUTPUT);
@@ -108,6 +108,7 @@ bool Adafruit_LSM9DS1::begin()
   delay(10);
 
 
+  /*
   for (uint8_t i=0; i<0x30; i++) {
     Serial.print("XG $"); Serial.print(i, HEX); Serial.print(" = 0x"); 
     Serial.println(read8(XGTYPE, i), HEX);
@@ -116,15 +117,15 @@ bool Adafruit_LSM9DS1::begin()
     Serial.print("M $"); Serial.print(i, HEX); Serial.print(" = 0x"); 
     Serial.println(read8(MAGTYPE, i), HEX);
   }
-  
+  */
 
   uint8_t id = read8(XGTYPE, LSM9DS1_REGISTER_WHO_AM_I_XG);
-  Serial.print ("XG whoami: 0x"); Serial.println(id, HEX);
+  //Serial.print ("XG whoami: 0x"); Serial.println(id, HEX);
   if (id != LSM9DS1_XG_ID)
     return false;
 
   id = read8(MAGTYPE, LSM9DS1_REGISTER_WHO_AM_I_M);
-  Serial.print ("MAG whoami: 0x"); Serial.println(id, HEX);
+  //Serial.print ("MAG whoami: 0x"); Serial.println(id, HEX);
   if (id != LSM9DS1_MAG_ID)
     return false;
 
