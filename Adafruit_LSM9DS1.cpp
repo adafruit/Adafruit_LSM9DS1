@@ -440,7 +440,6 @@ byte Adafruit_LSM9DS1::readBuffer(boolean type, byte reg, byte len, uint8_t *buf
     }
     //Serial.println();
 
-    _wire->endTransmission();
   } else {
     if (_clk == -1)     // hardware SPI
       SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
