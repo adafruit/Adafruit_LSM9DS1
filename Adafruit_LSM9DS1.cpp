@@ -425,15 +425,14 @@ byte Adafruit_LSM9DS1::readBuffer(boolean type, byte reg, byte len, uint8_t *buf
     _wire->beginTransmission(address);
     _wire->write(reg);
     _wire->endTransmission();
-    _wire->requestFrom(address, (byte)len);
+    if (_wire->requestFrom(address, (byte)len) != len) {
+      return 0;
+    }
 
     /*
       Serial.print("0x"); Serial.print(address, HEX);
       Serial.print(" $"); Serial.print(reg, HEX); Serial.print(": ");
     */
-
-    // Wait around until enough data is available
-    while (_wire->available() < len);
 
     for (uint8_t i=0; i<len; i++) {
       buffer[i] = _wire->read();
