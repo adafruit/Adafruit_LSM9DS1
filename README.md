@@ -16,3 +16,4 @@ Check out the links above for our tutorials and wiring diagrams
 
 Written by Kevin Townsend for Adafruit Industries.  
 BSD license, all text above must be included in any redistribution
+https://opensource.org/licenses/BSD-3-Clause
