@@ -1,4 +1,4 @@
-Adafruit LSM9DS0 Library
+Adafruit LSM9DS1 Library
 ========================
 
 This is a library for the Adafruit triple-axis accelerometer/magnetometer/gyroscope LSM9DS1  breakouts
