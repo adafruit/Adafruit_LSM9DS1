@@ -301,7 +301,7 @@ void Adafruit_LSM9DS1::setupMag ( lsm9ds1MagGain_t gain )
 void Adafruit_LSM9DS1::setupGyro ( lsm9ds1GyroScale_t scale )
 {
   uint8_t reg = read8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG1_G);
-  reg &= ~(0b00110000);
+  reg &= ~(0b00011000);
   reg |= scale;
   write8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG1_G, reg );
 
@@ -389,7 +389,7 @@ void Adafruit_LSM9DS1::write8(boolean type, byte reg, byte value)
   } else {
     digitalWrite(_cs, LOW);
     if (_clk == -1)     // hardware SPI
-      SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
+      SPI.beginTransaction(SPISettings(2000000, MSBFIRST, SPI_MODE3));
     // set address
     spixfer(reg & 0x7F); // write data
     spixfer(value);
@@ -442,12 +442,15 @@ byte Adafruit_LSM9DS1::readBuffer(boolean type, byte reg, byte len, uint8_t *buf
 
   } else {
     if (_clk == -1)     // hardware SPI
-      SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
+      SPI.beginTransaction(SPISettings(2000000, MSBFIRST, SPI_MODE3));
     else
       digitalWrite(_clk, HIGH);
     // set address
 
     digitalWrite(_cs, LOW);
+
+    if(type == MAGTYPE)
+      reg |= 0x40;
 
     spixfer(reg | 0x80 ); // readdata
     for (uint8_t i=0; i<len; i++) {

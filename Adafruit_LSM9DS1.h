@@ -168,9 +168,9 @@ class Adafruit_LSM9DS1
 
     typedef enum
     {
-      LSM9DS1_GYROSCALE_245DPS             = (0b00 << 4),  // +/- 245 degrees per second rotation
-      LSM9DS1_GYROSCALE_500DPS             = (0b01 << 4),  // +/- 500 degrees per second rotation
-      LSM9DS1_GYROSCALE_2000DPS            = (0b11 << 4)   // +/- 2000 degrees per second rotation
+      LSM9DS1_GYROSCALE_245DPS             = (0b00 << 3),  // +/- 245 degrees per second rotation
+      LSM9DS1_GYROSCALE_500DPS             = (0b01 << 3),  // +/- 500 degrees per second rotation
+      LSM9DS1_GYROSCALE_2000DPS            = (0b11 << 3)   // +/- 2000 degrees per second rotation
     } lsm9ds1GyroScale_t;
     
     typedef struct vector_s
