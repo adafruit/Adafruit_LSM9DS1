@@ -2,9 +2,13 @@
 #include <SPI.h>
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>  // not used in this demo but required!
+#include <Adafruit_Simple_AHRS.h>
 
 // i2c
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
+
+// Create simple AHRS algorithm using the LSM9DS0 instance's accelerometer and magnetometer.
+Adafruit_Simple_AHRS ahrs(&lsm.getAccel(), &lsm.getMag());
 
 #define LSM9DS1_SCK A5
 #define LSM9DS1_MISO 12
@@ -80,7 +84,25 @@ void loop()
   Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" dps");
   Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" dps");
   Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
+  
+  //get orientation ubsing ahrs
 
   Serial.println();
+  
+  sensors_vec_t   orientation;
+  
+  // Use the simple AHRS function to get the current orientation.
+  if (ahrs.getOrientation(&orientation))
+  {
+    /* 'orientation' should have valid .roll and .pitch fields */
+    Serial.print(F("Orientation: "));
+    Serial.print(orientation.roll);
+    Serial.print(F(" "));
+    Serial.print(orientation.pitch);
+    Serial.print(F(" "));
+    Serial.print(orientation.heading);
+    Serial.println(F(""));
+  }
+  
   delay(200);
 }
