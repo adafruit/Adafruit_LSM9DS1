@@ -84,11 +84,10 @@ void loop()
   Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" dps");
   Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" dps");
   Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
-  
-  //get orientation ubsing ahrs
 
   Serial.println();
   
+  /*get orientation ubsing ahrs*/
   sensors_vec_t   orientation;
   
   // Use the simple AHRS function to get the current orientation.
