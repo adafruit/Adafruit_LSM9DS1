@@ -63,7 +63,7 @@ typedef void (Adafruit_LSM9DS1::*lsm9ds1_get_sensor_func)(sensor_t *);
 /**! Interface object for LSM9DS1 9-DoF sensor */
 class Adafruit_LSM9DS1 {
 public:
-  Adafruit_LSM9DS1(TwoWire *wireBus=&Wire, int32_t sensorID = 0);
+  Adafruit_LSM9DS1(TwoWire *wireBus = &Wire, int32_t sensorID = 0);
   Adafruit_LSM9DS1(int8_t xmcs, int8_t gcs, int32_t sensorID = 0);
   Adafruit_LSM9DS1(int8_t clk, int8_t miso, int8_t mosi, int8_t xmcs,
                    int8_t gcs, int32_t sensorID = 0);
@@ -140,19 +140,19 @@ public:
         (0b11 << 4) // +/- 2000 degrees per second rotation
   } lsm9ds1GyroScale_t;
 
-
   /**! 3D floating point vector with X Y Z components */
   typedef struct vector_s {
-    float x;  ///< X component
-    float y;  ///< Y component
-    float z;  ///< Z component
+    float x; ///< X component
+    float y; ///< Y component
+    float z; ///< Z component
   } lsm9ds1Vector_t;
 
   lsm9ds1Vector_t
       accelData; ///< Last read accelerometer data will be available here
   lsm9ds1Vector_t gyroData; ///< Last read gyroscope data will be available here
-  lsm9ds1Vector_t magData; ///< Last read magnetometer data will be available here
-  int16_t temperature;      ///< Last read temperzture data will be available here
+  lsm9ds1Vector_t
+      magData;         ///< Last read magnetometer data will be available here
+  int16_t temperature; ///< Last read temperzture data will be available here
 
   bool begin(void);
   void read(void);
@@ -192,14 +192,15 @@ public:
         @param parent The LSM9DS1 parent object
         @param readFunc The no-argument function to call to read data
         @param eventFunc The sensor_event_t function to call to get event data
-        @param sensorFunc The sensor_t function to call to get sensor metadata */
+        @param sensorFunc The sensor_t function to call to get sensor metadata
+     */
     Sensor(Adafruit_LSM9DS1 *parent, lsm9ds1_read_func readFunc,
            lsm9ds1_get_event_func eventFunc, lsm9ds1_get_sensor_func sensorFunc)
         : _parent(parent), _readFunc(readFunc), _eventFunc(eventFunc),
           _sensorFunc(sensorFunc) {}
 
     /*! @brief Get sensor event data
-        @param event Pointer to sensor_event_t to fill in 
+        @param event Pointer to sensor_event_t to fill in
         @returns True on successful read */
     virtual bool getEvent(sensors_event_t *event) {
       (_parent->*_readFunc)();
@@ -220,16 +221,16 @@ public:
     lsm9ds1_get_sensor_func _sensorFunc;
   };
 
-  /*! @brief Return Adafruit_Sensor compatible interface for accelerometer 
+  /*! @brief Return Adafruit_Sensor compatible interface for accelerometer
       @returns Reference to Adafruit_Sensor subclassed object  */
   Sensor &getAccel(void) { return _accelSensor; }
-  /*! @brief Return Adafruit_Sensor compatible interface for gyroscope 
+  /*! @brief Return Adafruit_Sensor compatible interface for gyroscope
       @returns Reference to Adafruit_Sensor subclassed object  */
   Sensor &getGyro(void) { return _gyroSensor; }
-  /*! @brief Return Adafruit_Sensor compatible interface for temperature 
+  /*! @brief Return Adafruit_Sensor compatible interface for temperature
       @returns Reference to Adafruit_Sensor subclassed object  */
   Sensor &getTemp(void) { return _tempSensor; }
-  /*! @brief Return Adafruit_Sensor compatible interface for magnetometer 
+  /*! @brief Return Adafruit_Sensor compatible interface for magnetometer
       @returns Reference to Adafruit_Sensor subclassed object  */
   Adafruit_Sensor &getMag(void) { return _magSensor; }
 

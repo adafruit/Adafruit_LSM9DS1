@@ -58,7 +58,6 @@ Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t xgcs, int8_t mcs, int32_t sensorID) {
              &Adafruit_LSM9DS1::getTempSensor);
 }
 
-
 void Adafruit_LSM9DS1::initI2C(TwoWire *wireBus, int32_t sensorID) {
   _i2c = true;
   _wire = wireBus;
@@ -182,7 +181,6 @@ bool Adafruit_LSM9DS1::begin() {
  PUBLIC FUNCTIONS
  ***************************************************************************/
 
-
 /**************************************************************************/
 /*!
     @brief Read all four sensor subcomponents
@@ -202,7 +200,7 @@ void Adafruit_LSM9DS1::read() {
 */
 /**************************************************************************/
 void Adafruit_LSM9DS1::readMag() {
-  _magSensor.read(); 
+  _magSensor.read();
   magData.x = _magSensor.x;
   magData.y = _magSensor.y;
   magData.z = _magSensor.z;
@@ -373,10 +371,13 @@ void Adafruit_LSM9DS1::setupGyro(lsm9ds1GyroScale_t scale) {
 /**************************************************************************/
 /*!
     @brief  Gets the most recent accel sensor events for all 4 sensors
-    @param accelEvent The accelerometer event object we will fill, pass NULL to skip
-    @param magEvent The magnetometer event object we will fill, pass NULL to skip
+    @param accelEvent The accelerometer event object we will fill, pass NULL to
+   skip
+    @param magEvent The magnetometer event object we will fill, pass NULL to
+   skip
     @param gyroEvent The gyroscope event object we will fill, pass NULL to skip
-    @param tempEvent The temperature event object we will fill, pass NULL to skip
+    @param tempEvent The temperature event object we will fill, pass NULL to
+   skip
     @returns True on successful reads
 */
 /**************************************************************************/
@@ -404,7 +405,8 @@ bool Adafruit_LSM9DS1::getEvent(sensors_event_t *accelEvent,
 /**************************************************************************/
 /*!
     @brief Gets the sensor_t data for all 4 sub-sensors at once call
-    @param accel The accelerometer sensor_t object we will fill, pass NULL to skip
+    @param accel The accelerometer sensor_t object we will fill, pass NULL to
+   skip
     @param mag The magnetometer sensor_t object we will fill, pass NULL to skip
     @param gyro The gyroscope sensor_t object we will fill, pass NULL to skip
     @param temp The temperature sensor_t object we will fill, pass NULL to skip
@@ -422,7 +424,6 @@ void Adafruit_LSM9DS1::getSensor(sensor_t *accel, sensor_t *mag, sensor_t *gyro,
   if (temp)
     getTempSensor(temp);
 }
-
 
 /**************************************************************************/
 /*!
@@ -558,9 +559,6 @@ void Adafruit_LSM9DS1::getTempSensor(sensor_t *sensor) {
   sensor->min_value = 0.0;  // ToDo
   sensor->resolution = 0.0; // ToDo
 }
-
-
-
 
 /***************************************************************************
  PRIVATE FUNCTIONS
