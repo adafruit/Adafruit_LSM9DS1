@@ -155,9 +155,12 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa49edfc1c6c411c191eb8f54a96a51b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#aa49edfc1c6c411c191eb8f54a96a51b6">Adafruit_LSM9DS1</a> (TwoWire *wireBus=&amp;Wire, int32_t sensorID=0)</td></tr>
-<tr class="memdesc:aa49edfc1c6c411c191eb8f54a96a51b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate with hardware I2C interface.  <a href="#aa49edfc1c6c411c191eb8f54a96a51b6">More...</a><br /></td></tr>
-<tr class="separator:aa49edfc1c6c411c191eb8f54a96a51b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0249856c15dc6ac3ebcaf8014a1087e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#aa0249856c15dc6ac3ebcaf8014a1087e">Adafruit_LSM9DS1</a> (int32_t sensorID=0)</td></tr>
+<tr class="memdesc:aa0249856c15dc6ac3ebcaf8014a1087e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate with default hardware I2C interface.  <a href="#aa0249856c15dc6ac3ebcaf8014a1087e">More...</a><br /></td></tr>
+<tr class="separator:aa0249856c15dc6ac3ebcaf8014a1087e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa515648dd22f9f73348d782bb23fb3f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#aa515648dd22f9f73348d782bb23fb3f5">Adafruit_LSM9DS1</a> (TwoWire *wireBus, int32_t sensorID=0)</td></tr>
+<tr class="memdesc:aa515648dd22f9f73348d782bb23fb3f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate with hardware I2C interface.  <a href="#aa515648dd22f9f73348d782bb23fb3f5">More...</a><br /></td></tr>
+<tr class="separator:aa515648dd22f9f73348d782bb23fb3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae53e8133963e33de102272c9c2267732"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#ae53e8133963e33de102272c9c2267732">Adafruit_LSM9DS1</a> (int8_t xmcs, int8_t gcs, int32_t sensorID=0)</td></tr>
 <tr class="memdesc:ae53e8133963e33de102272c9c2267732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate with hardware SPI interface.  <a href="#ae53e8133963e33de102272c9c2267732">More...</a><br /></td></tr>
 <tr class="separator:ae53e8133963e33de102272c9c2267732"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,8 +332,34 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa49edfc1c6c411c191eb8f54a96a51b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa49edfc1c6c411c191eb8f54a96a51b6">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[1/3]</span></h2>
+<a id="aa0249856c15dc6ac3ebcaf8014a1087e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0249856c15dc6ac3ebcaf8014a1087e">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Adafruit_LSM9DS1::Adafruit_LSM9DS1 </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>sensorID</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantiate with default hardware I2C interface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sensorID</td><td>Unique identifier you'd like for the sensors </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa515648dd22f9f73348d782bb23fb3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa515648dd22f9f73348d782bb23fb3f5">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -339,7 +368,7 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td class="memname">Adafruit_LSM9DS1::Adafruit_LSM9DS1 </td>
           <td>(</td>
           <td class="paramtype">TwoWire *&#160;</td>
-          <td class="paramname"><em>wireBus</em> = <code>&amp;Wire</code>, </td>
+          <td class="paramname"><em>wireBus</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -358,7 +387,7 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Instantiate with hardware I2C interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">wireBus</td><td>The I2C wire interface you'd like to use, defaults to &amp;Wire </td></tr>
+    <tr><td class="paramname">wireBus</td><td>The I2C wire interface you'd like to use </td></tr>
     <tr><td class="paramname">sensorID</td><td>Unique identifier you'd like for the sensors </td></tr>
   </table>
   </dd>
@@ -367,7 +396,7 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 </div>
 <a id="ae53e8133963e33de102272c9c2267732"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae53e8133963e33de102272c9c2267732">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae53e8133963e33de102272c9c2267732">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -411,7 +440,7 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 </div>
 <a id="af6380c267548ce23ccd1d61bbe8352d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6380c267548ce23ccd1d61bbe8352d9">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af6380c267548ce23ccd1d61bbe8352d9">&#9670;&nbsp;</a></span>Adafruit_LSM9DS1() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
