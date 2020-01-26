@@ -146,7 +146,6 @@ public:
 
   lsm9ds1Vector_t
       accelData; // Last read accelerometer data will be available here
-  lsm9ds1Vector_t magData; // Last read magnetometer data will be available here
   lsm9ds1Vector_t gyroData; // Last read gyroscope data will be available here
   int16_t temperature;      // Last read temperzture data will be available here
 

@@ -127,19 +127,7 @@ bool Adafruit_LSM9DS1::begin() {
 
   delay(10);
 
-  /*
-  for (uint8_t i=0; i<0x30; i++) {
-    Serial.print("XG $"); Serial.print(i, HEX); Serial.print(" = 0x");
-    Serial.println(read8(XGTYPE, i), HEX);
-  }
-  for (uint8_t i=0; i<0x30; i++) {
-    Serial.print("M $"); Serial.print(i, HEX); Serial.print(" = 0x");
-    Serial.println(read8(MAGTYPE, i), HEX);
-  }
-  */
-
   uint8_t id = read8(XGTYPE, LSM9DS1_REGISTER_WHO_AM_I_XG);
-  // Serial.print ("XG whoami: 0x"); Serial.println(id, HEX);
   if (id != LSM9DS1_XG_ID)
     return false;
 
@@ -489,9 +477,9 @@ void Adafruit_LSM9DS1::getGyroEvent(sensors_event_t *event,
   event->sensor_id = _lsm9dso_sensorid_accel;
   event->type = SENSOR_TYPE_GYROSCOPE;
   event->timestamp = timestamp;
-  event->gyro.x = gyroData.x * _gyro_dps_digit;
-  event->gyro.y = gyroData.y * _gyro_dps_digit;
-  event->gyro.z = gyroData.z * _gyro_dps_digit;
+  event->gyro.x = gyroData.x * _gyro_dps_digit * SENSORS_DPS_TO_RADS;
+  event->gyro.y = gyroData.y * _gyro_dps_digit * SENSORS_DPS_TO_RADS;
+  event->gyro.z = gyroData.z * _gyro_dps_digit * SENSORS_DPS_TO_RADS;
 }
 
 void Adafruit_LSM9DS1::getTempEvent(sensors_event_t *event,
@@ -514,9 +502,9 @@ void Adafruit_LSM9DS1::getAccelSensor(sensor_t *sensor) {
   sensor->sensor_id = _lsm9dso_sensorid_accel;
   sensor->type = SENSOR_TYPE_ACCELEROMETER;
   sensor->min_delay = 0;
-  sensor->max_value = 0.0;  // ToDo
-  sensor->min_value = 0.0;  // ToDo
-  sensor->resolution = 0.0; // ToDo
+  sensor->max_value = 156.8;   // +16 g = 156.8 m/s^s
+  sensor->min_value = -156.8;  // -16 g = 156.8 m/s^s
+  sensor->resolution = 0.0005978; // 0.061 mg = 0.0005978 m/s^2
 }
 
 void Adafruit_LSM9DS1::getMagSensor(sensor_t *sensor) {
@@ -531,9 +519,9 @@ void Adafruit_LSM9DS1::getGyroSensor(sensor_t *sensor) {
   sensor->sensor_id = _lsm9dso_sensorid_gyro;
   sensor->type = SENSOR_TYPE_GYROSCOPE;
   sensor->min_delay = 0;
-  sensor->max_value = 0.0;  // ToDo
-  sensor->min_value = 0.0;  // ToDo
-  sensor->resolution = 0.0; // ToDo
+  sensor->max_value = 34.91;  // +2000 dps = 34.906586 rad/s
+  sensor->min_value = -34.91;  // "
+  sensor->resolution = 0.00015271631375; // 8.75 mdps = 0.00015271631375 rad/s
 }
 
 void Adafruit_LSM9DS1::getTempSensor(sensor_t *sensor) {
