@@ -1,7 +1,6 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_LSM9DS1.h>
-#include <Adafruit_LIS3MDL.h>
 #include <Adafruit_Sensor.h>  // not used in this demo but required!
 
 // i2c
@@ -74,13 +73,13 @@ void loop()
   Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
   Serial.print("\tZ: "); Serial.print(a.acceleration.z);     Serial.println(" m/s^2 ");
 
-  Serial.print("Mag X: "); Serial.print(m.magnetic.x);   Serial.print(" uTesla");
-  Serial.print("\tY: "); Serial.print(m.magnetic.y);     Serial.print(" uTesla");
-  Serial.print("\tZ: "); Serial.print(m.magnetic.z);     Serial.println(" uTesla");
+  Serial.print("Mag X: "); Serial.print(m.magnetic.x);   Serial.print(" uT");
+  Serial.print("\tY: "); Serial.print(m.magnetic.y);     Serial.print(" uT");
+  Serial.print("\tZ: "); Serial.print(m.magnetic.z);     Serial.println(" uT");
 
-  Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" dps");
-  Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" dps");
-  Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
+  Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" rad/s");
+  Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" rad/s");
+  Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" rad/s");
 
   Serial.println();
   delay(200);
