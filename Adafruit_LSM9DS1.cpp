@@ -502,8 +502,8 @@ void Adafruit_LSM9DS1::getAccelSensor(sensor_t *sensor) {
   sensor->sensor_id = _lsm9dso_sensorid_accel;
   sensor->type = SENSOR_TYPE_ACCELEROMETER;
   sensor->min_delay = 0;
-  sensor->max_value = 156.8;   // +16 g = 156.8 m/s^s
-  sensor->min_value = -156.8;  // -16 g = 156.8 m/s^s
+  sensor->max_value = 156.8;      // +16 g = 156.8 m/s^s
+  sensor->min_value = -156.8;     // -16 g = 156.8 m/s^s
   sensor->resolution = 0.0005978; // 0.061 mg = 0.0005978 m/s^2
 }
 
@@ -519,8 +519,8 @@ void Adafruit_LSM9DS1::getGyroSensor(sensor_t *sensor) {
   sensor->sensor_id = _lsm9dso_sensorid_gyro;
   sensor->type = SENSOR_TYPE_GYROSCOPE;
   sensor->min_delay = 0;
-  sensor->max_value = 34.91;  // +2000 dps = 34.906586 rad/s
-  sensor->min_value = -34.91;  // "
+  sensor->max_value = 34.91;             // +2000 dps = 34.906586 rad/s
+  sensor->min_value = -34.91;            // "
   sensor->resolution = 0.00015271631375; // 8.75 mdps = 0.00015271631375 rad/s
 }
 
