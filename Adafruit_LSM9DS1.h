@@ -64,7 +64,7 @@ typedef void (Adafruit_LSM9DS1::*lsm9ds1_get_sensor_func)(sensor_t *);
 class Adafruit_LSM9DS1 {
 public:
   Adafruit_LSM9DS1(int32_t sensorID = 0);
-  Adafruit_LSM9DS1(TwoWire *wireBus = &Wire, int32_t sensorID = 0);
+  Adafruit_LSM9DS1(TwoWire *wireBus, int32_t sensorID = 0);
   Adafruit_LSM9DS1(int8_t xmcs, int8_t gcs, int32_t sensorID = 0);
   Adafruit_LSM9DS1(int8_t clk, int8_t miso, int8_t mosi, int8_t xmcs,
                    int8_t gcs, int32_t sensorID = 0);

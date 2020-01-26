@@ -21,7 +21,7 @@
 /**************************************************************************/
 /*!
     @brief Instantiate with hardware I2C interface
-    @param wireBus The I2C wire interface you'd like to use, defaults to &Wire
+    @param wireBus The I2C wire interface you'd like to use
     @param sensorID Unique identifier you'd like for the sensors
 */
 /**************************************************************************/
