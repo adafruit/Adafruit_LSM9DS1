@@ -31,6 +31,16 @@ Adafruit_LSM9DS1::Adafruit_LSM9DS1(TwoWire *wireBus, int32_t sensorID) {
 
 /**************************************************************************/
 /*!
+    @brief Instantiate with default hardware I2C interface
+    @param sensorID Unique identifier you'd like for the sensors
+*/
+/**************************************************************************/
+Adafruit_LSM9DS1::Adafruit_LSM9DS1(int32_t sensorID) {
+  initI2C(&Wire, sensorID);
+}
+
+/**************************************************************************/
+/*!
     @brief Instantiate with hardware SPI interface
     @param xgcs SPI CS pin for accelerometer/gyro subchip
     @param mcs SPI CS pin for magnetometer subchip
