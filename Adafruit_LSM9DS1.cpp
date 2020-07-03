@@ -130,7 +130,7 @@ Adafruit_LSM9DS1::Adafruit_LSM9DS1(int8_t sclk, int8_t smiso, int8_t smosi,
 bool Adafruit_LSM9DS1::begin() {
   if (_i2c) {
     _wire->begin();
-    if (!_magSensor.begin_I2C(LSM9DS1_ADDRESS_MAG)) {
+    if (!_magSensor.begin_I2C(LSM9DS1_ADDRESS_MAG, _wire)) {
       return false;
     }
   } else if (_clk == -1) {
