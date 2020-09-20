@@ -299,6 +299,9 @@ void Adafruit_LSM9DS1::readTemp() {
     @brief Configure the accelerometer ranging
     @param range Can be LSM9DS1_ACCELRANGE_2G, LSM9DS1_ACCELRANGE_4G,
     LSM9DS1_ACCELRANGE_8G, LSM9DS1_ACCELRANGE_16G
+    @param rate Can be LSM9DS1_ACCELDATARATE_10HZ, LSM9DS1_ACCELDATARATE_50HZ,
+    LSM9DS1_ACCELDATARATE_119HZ, LSM9DS1_ACCELDATARATE_238HZ,
+    LSM9DS1_ACCELDATARATE_476HZ, LSM9DS1_ACCELDATARATE_952HZ
 */
 /**************************************************************************/
 void Adafruit_LSM9DS1::setupAccel(lsm9ds1AccelRange_t range,
