@@ -108,20 +108,17 @@ public:
     LSM9DS1_ACCELRANGE_8G = (0b11 << 3),
   } lsm9ds1AccelRange_t;
 
-  /**! Enumeration for accelerometer data rage 3.125 - 1600 Hz */
+  /**! Enumeration for accelerometer data rate 10 - 952 Hz */
   typedef enum {
     LSM9DS1_ACCELDATARATE_POWERDOWN = (0b0000 << 4),
-    LSM9DS1_ACCELDATARATE_3_125HZ = (0b0001 << 4),
-    LSM9DS1_ACCELDATARATE_6_25HZ = (0b0010 << 4),
-    LSM9DS1_ACCELDATARATE_12_5HZ = (0b0011 << 4),
-    LSM9DS1_ACCELDATARATE_25HZ = (0b0100 << 4),
-    LSM9DS1_ACCELDATARATE_50HZ = (0b0101 << 4),
-    LSM9DS1_ACCELDATARATE_100HZ = (0b0110 << 4),
-    LSM9DS1_ACCELDATARATE_200HZ = (0b0111 << 4),
-    LSM9DS1_ACCELDATARATE_400HZ = (0b1000 << 4),
-    LSM9DS1_ACCELDATARATE_800HZ = (0b1001 << 4),
-    LSM9DS1_ACCELDATARATE_1600HZ = (0b1010 << 4)
-  } lm9ds1AccelDataRate_t;
+
+    LSM9DS1_ACCELDATARATE_10HZ = (0b001 << 5),
+    LSM9DS1_ACCELDATARATE_50HZ = (0b010 << 5),
+    LSM9DS1_ACCELDATARATE_119HZ = (0b011 << 5),
+    LSM9DS1_ACCELDATARATE_238HZ = (0b100 << 5),
+    LSM9DS1_ACCELDATARATE_476HZ = (0b101 << 5),
+    LSM9DS1_ACCELDATARATE_952HZ = (0b110 << 5),
+  } lsm9ds1AccelDataRate_t;
 
   /**! Enumeration for magnetometer scaling (4/8/12/16 gauss) */
   typedef enum {
