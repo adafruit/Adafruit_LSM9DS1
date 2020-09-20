@@ -159,7 +159,7 @@ public:
   void readMag(void);
   void readTemp(void);
 
-  void setupAccel(lsm9ds1AccelRange_t range);
+  void setupAccel(lsm9ds1AccelRange_t range, lsm9ds1AccelDataRate_t rate);
   void setupMag(lsm9ds1MagGain_t gain);
   void setupGyro(lsm9ds1GyroScale_t scale);
 

@@ -180,7 +180,7 @@ bool Adafruit_LSM9DS1::begin() {
   _magSensor.setOperationMode(LIS3MDL_CONTINUOUSMODE);
 
   // Set default ranges for the various sensors
-  setupAccel(LSM9DS1_ACCELRANGE_2G);
+  setupAccel(LSM9DS1_ACCELRANGE_2G, LSM9DS1_ACCELDATARATE_10HZ);
   setupMag(LSM9DS1_MAGGAIN_4GAUSS);
   setupGyro(LSM9DS1_GYROSCALE_245DPS);
 
@@ -301,10 +301,10 @@ void Adafruit_LSM9DS1::readTemp() {
     LSM9DS1_ACCELRANGE_8G, LSM9DS1_ACCELRANGE_16G
 */
 /**************************************************************************/
-void Adafruit_LSM9DS1::setupAccel(lsm9ds1AccelRange_t range) {
+void Adafruit_LSM9DS1::setupAccel(lsm9ds1AccelRange_t range, lsm9ds1AccelDataRate_t rate) {
   uint8_t reg = read8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG6_XL);
-  reg &= ~(0b00011000);
-  reg |= range;
+  reg &= ~(0b11111000);
+  reg |= range | rate;
   // Serial.println("set range: ");
   write8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG6_XL, reg);
 
