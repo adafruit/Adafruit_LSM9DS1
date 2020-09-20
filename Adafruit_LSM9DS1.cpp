@@ -301,7 +301,8 @@ void Adafruit_LSM9DS1::readTemp() {
     LSM9DS1_ACCELRANGE_8G, LSM9DS1_ACCELRANGE_16G
 */
 /**************************************************************************/
-void Adafruit_LSM9DS1::setupAccel(lsm9ds1AccelRange_t range, lsm9ds1AccelDataRate_t rate) {
+void Adafruit_LSM9DS1::setupAccel(lsm9ds1AccelRange_t range,
+                                  lsm9ds1AccelDataRate_t rate) {
   uint8_t reg = read8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG6_XL);
   reg &= ~(0b11111000);
   reg |= range | rate;
