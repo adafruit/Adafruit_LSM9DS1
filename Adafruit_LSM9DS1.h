@@ -16,10 +16,10 @@
 #define __LSM9DS1_H__
 
 #include "Arduino.h"
+#include <Adafruit_I2CDevice.h>
 #include <Adafruit_LIS3MDL.h>
+#include <Adafruit_SPIDevice.h>
 #include <Adafruit_Sensor.h>
-#include <SPI.h>
-#include <Wire.h>
 
 #define LSM9DS1_ADDRESS_ACCELGYRO (0x6B)
 #define LSM9DS1_ADDRESS_MAG (0x1E)
@@ -236,14 +236,14 @@ public:
   Adafruit_Sensor &getMag(void) { return _magSensor; }
 
 private:
+  Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
+  Adafruit_SPIDevice *spi_dev = NULL; ///< Pointer to SPI bus interface
   void write8(boolean type, byte reg, byte value);
   byte read8(boolean type, byte reg);
   byte readBuffer(boolean type, byte reg, byte len, uint8_t *buffer);
-  uint8_t spixfer(uint8_t data);
-  void initI2C(TwoWire *wireBus, int32_t sensorID);
+  void initSensor(int32_t sensorID);
 
-  boolean _i2c;
-  TwoWire *_wire;
+  TwoWire *_wire = NULL;
   int8_t _csm, _csxg, _mosi, _miso, _clk;
   float _accel_mg_lsb;
   float _gyro_dps_digit;
