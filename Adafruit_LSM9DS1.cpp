@@ -312,7 +312,7 @@ void Adafruit_LSM9DS1::setupMag(lsm9ds1MagGain_t gain) {
 /**************************************************************************/
 void Adafruit_LSM9DS1::setupGyro(lsm9ds1GyroScale_t scale) {
   uint8_t reg = read8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG1_G);
-  reg &= ~(0b00110000);
+  reg &= ~(0b00011000);
   reg |= scale;
   write8(XGTYPE, LSM9DS1_REGISTER_CTRL_REG1_G, reg);
 
