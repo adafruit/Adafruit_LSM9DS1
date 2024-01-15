@@ -122,23 +122,18 @@ Public Types</h2></td></tr>
 <b>LSM9DS1_ACCELRANGE_8G</b> = (0b11 &lt;&lt; 3)
  }</td></tr>
 <tr class="separator:a0f21b77fbb872f45a67c2822c74b7840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b6246cde4010969b60a1a183b059164"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#a3b6246cde4010969b60a1a183b059164">lm9ds1AccelDataRate_t</a> { <br />
+<tr class="memitem:a0b64901d41d9b05c877c9cf27c837e19"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0b64901d41d9b05c877c9cf27c837e19">lsm9ds1AccelDataRate_t</a> { <br />
 &#160;&#160;<b>LSM9DS1_ACCELDATARATE_POWERDOWN</b> = (0b0000 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_3_125HZ</b> = (0b0001 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_6_25HZ</b> = (0b0010 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_12_5HZ</b> = (0b0011 &lt;&lt; 4), 
+<b>LSM9DS1_ACCELDATARATE_10HZ</b> = (0b001 &lt;&lt; 5), 
+<b>LSM9DS1_ACCELDATARATE_50HZ</b> = (0b010 &lt;&lt; 5), 
+<b>LSM9DS1_ACCELDATARATE_119HZ</b> = (0b011 &lt;&lt; 5), 
 <br />
-&#160;&#160;<b>LSM9DS1_ACCELDATARATE_25HZ</b> = (0b0100 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_50HZ</b> = (0b0101 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_100HZ</b> = (0b0110 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_200HZ</b> = (0b0111 &lt;&lt; 4), 
-<br />
-&#160;&#160;<b>LSM9DS1_ACCELDATARATE_400HZ</b> = (0b1000 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_800HZ</b> = (0b1001 &lt;&lt; 4), 
-<b>LSM9DS1_ACCELDATARATE_1600HZ</b> = (0b1010 &lt;&lt; 4)
+&#160;&#160;<b>LSM9DS1_ACCELDATARATE_238HZ</b> = (0b100 &lt;&lt; 5), 
+<b>LSM9DS1_ACCELDATARATE_476HZ</b> = (0b101 &lt;&lt; 5), 
+<b>LSM9DS1_ACCELDATARATE_952HZ</b> = (0b110 &lt;&lt; 5)
 <br />
  }</td></tr>
-<tr class="separator:a3b6246cde4010969b60a1a183b059164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a0b64901d41d9b05c877c9cf27c837e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbf85ba04a35d00829f9658dfede770d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#afbf85ba04a35d00829f9658dfede770d">lsm9ds1MagGain_t</a> { <b>LSM9DS1_MAGGAIN_4GAUSS</b> = (0b00 &lt;&lt; 5), 
 <b>LSM9DS1_MAGGAIN_8GAUSS</b> = (0b01 &lt;&lt; 5), 
 <b>LSM9DS1_MAGGAIN_12GAUSS</b> = (0b10 &lt;&lt; 5), 
@@ -190,9 +185,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#ab1e4e58f45f05cbaa5d3327eb1a7d02d">readTemp</a> (void)</td></tr>
 <tr class="memdesc:ab1e4e58f45f05cbaa5d3327eb1a7d02d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the sensor temperature sensor component. <br /></td></tr>
 <tr class="separator:ab1e4e58f45f05cbaa5d3327eb1a7d02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb90f5b7212bbef3748fbdf336934a38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#aeb90f5b7212bbef3748fbdf336934a38">setupAccel</a> (<a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0f21b77fbb872f45a67c2822c74b7840">lsm9ds1AccelRange_t</a> range)</td></tr>
-<tr class="memdesc:aeb90f5b7212bbef3748fbdf336934a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the accelerometer ranging.  <a href="#aeb90f5b7212bbef3748fbdf336934a38">More...</a><br /></td></tr>
-<tr class="separator:aeb90f5b7212bbef3748fbdf336934a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c81eb885270b9ca3b0ae64ee9283ffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#a9c81eb885270b9ca3b0ae64ee9283ffe">setupAccel</a> (<a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0f21b77fbb872f45a67c2822c74b7840">lsm9ds1AccelRange_t</a> range, <a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0b64901d41d9b05c877c9cf27c837e19">lsm9ds1AccelDataRate_t</a> rate)</td></tr>
+<tr class="memdesc:a9c81eb885270b9ca3b0ae64ee9283ffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the accelerometer ranging.  <a href="#a9c81eb885270b9ca3b0ae64ee9283ffe">More...</a><br /></td></tr>
+<tr class="separator:a9c81eb885270b9ca3b0ae64ee9283ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace604ddc6a73ca3d1ab880e0d3e686d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#ace604ddc6a73ca3d1ab880e0d3e686d6">setupMag</a> (<a class="el" href="class_adafruit___l_s_m9_d_s1.html#afbf85ba04a35d00829f9658dfede770d">lsm9ds1MagGain_t</a> gain)</td></tr>
 <tr class="memdesc:ace604ddc6a73ca3d1ab880e0d3e686d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the magnetometer gain.  <a href="#ace604ddc6a73ca3d1ab880e0d3e686d6">More...</a><br /></td></tr>
 <tr class="separator:ace604ddc6a73ca3d1ab880e0d3e686d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,18 +281,18 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="a3b6246cde4010969b60a1a183b059164"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b6246cde4010969b60a1a183b059164">&#9670;&nbsp;</a></span>lm9ds1AccelDataRate_t</h2>
+<a id="a0b64901d41d9b05c877c9cf27c837e19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b64901d41d9b05c877c9cf27c837e19">&#9670;&nbsp;</a></span>lsm9ds1AccelDataRate_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="class_adafruit___l_s_m9_d_s1.html#a3b6246cde4010969b60a1a183b059164">Adafruit_LSM9DS1::lm9ds1AccelDataRate_t</a></td>
+          <td class="memname">enum <a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0b64901d41d9b05c877c9cf27c837e19">Adafruit_LSM9DS1::lsm9ds1AccelDataRate_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>! Enumeration for accelerometer data rage 3.125 - 1600 Hz </p>
+<p>! Enumeration for accelerometer data rate 10 - 952 Hz </p>
 
 </div>
 </div>
@@ -526,8 +521,8 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="aeb90f5b7212bbef3748fbdf336934a38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb90f5b7212bbef3748fbdf336934a38">&#9670;&nbsp;</a></span>setupAccel()</h2>
+<a id="a9c81eb885270b9ca3b0ae64ee9283ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c81eb885270b9ca3b0ae64ee9283ffe">&#9670;&nbsp;</a></span>setupAccel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -536,8 +531,18 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td class="memname">void Adafruit_LSM9DS1::setupAccel </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0f21b77fbb872f45a67c2822c74b7840">lsm9ds1AccelRange_t</a>&#160;</td>
-          <td class="paramname"><em>range</em></td><td>)</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_adafruit___l_s_m9_d_s1.html#a0b64901d41d9b05c877c9cf27c837e19">lsm9ds1AccelDataRate_t</a>&#160;</td>
+          <td class="paramname"><em>rate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -546,6 +551,7 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">range</td><td>Can be LSM9DS1_ACCELRANGE_2G, LSM9DS1_ACCELRANGE_4G, LSM9DS1_ACCELRANGE_8G, LSM9DS1_ACCELRANGE_16G </td></tr>
+    <tr><td class="paramname">rate</td><td>Can be LSM9DS1_ACCELDATARATE_10HZ, LSM9DS1_ACCELDATARATE_50HZ, LSM9DS1_ACCELDATARATE_119HZ, LSM9DS1_ACCELDATARATE_238HZ, LSM9DS1_ACCELDATARATE_476HZ, LSM9DS1_ACCELDATARATE_952HZ </td></tr>
   </table>
   </dd>
 </dl>
