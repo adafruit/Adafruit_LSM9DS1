@@ -110,8 +110,7 @@ public:
 
   /**! Enumeration for accelerometer data rate 10 - 952 Hz */
   typedef enum {
-    LSM9DS1_ACCELDATARATE_POWERDOWN = (0b0000 << 4),
-
+    LSM9DS1_ACCELDATARATE_POWERDOWN = (0b0000 << 5),
     LSM9DS1_ACCELDATARATE_10HZ = (0b001 << 5),
     LSM9DS1_ACCELDATARATE_50HZ = (0b010 << 5),
     LSM9DS1_ACCELDATARATE_119HZ = (0b011 << 5),
@@ -159,7 +158,8 @@ public:
   void readMag(void);
   void readTemp(void);
 
-  void setupAccel(lsm9ds1AccelRange_t range, lsm9ds1AccelDataRate_t rate);
+  void setupAccel(lsm9ds1AccelRange_t range,
+                  lsm9ds1AccelDataRate_t rate = LSM9DS1_ACCELDATARATE_10HZ);
   void setupMag(lsm9ds1MagGain_t gain);
   void setupGyro(lsm9ds1GyroScale_t scale);
 
