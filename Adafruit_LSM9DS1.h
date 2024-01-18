@@ -1,5 +1,5 @@
 /***************************************************************************
-  This is a library for the LSM9DS1 Accelerometer and magnentometer/compass
+  This is a library for the LSM9DS1 Accelerometer and magnetometer/compass
 
   Designed specifically to work with the Adafruit LSM9DS1 Breakouts
 
